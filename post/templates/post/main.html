@@ -1,0 +1,190 @@
+ <!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+  <title> Social meet :: BLogspot </title>
+  <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+
+
+</head>
+<body>
+
+
+
+
+
+  <!--
+  ========== header section ==========
+  ==================================== 
+  -->
+
+  
+  <!-- navigations ----->
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" >
+      <a class="navbar-brand" href="{% url 'home'%}">Social Meet</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'home'%}">Home <span class="sr-only"></span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'about' %}" style="color: white; ">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'post-list'%}" style="color: white; ">Blogs<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contact' %}" style="color: white; ">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'gallary' %}" style="color: white; ">Gallary</a>
+          </li>
+          {% if user.is_authenticated %}
+            {% if user.is_superuser %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'post-create' %}" style="color: white; ">Create Post </a>
+                </li>
+            {% endif %}
+          {% endif %}
+         
+          <!--<li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dropdown link
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>-->
+        </ul>  
+        <form class="form-inline my-2 my-lg-2 ml-5" action="/s/" method="get">
+          <input class="form-control mr-sm-2" type="search" name = 'querypost' placeholder="Search Post" aria-label="Search">
+          <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+      <div>
+
+
+          {% if user.is_superuser  %}
+
+                  <span class="navbar-text  " style="color: white;  text-transform: uppercase;">
+                   Welcome Admin {{user.username}} !
+                  </span>
+                  <a class="ml-2" href="{% url 'logout'%}"><button class="btn btn-danger ">Logout</button></a>
+                  
+
+          {% elif user.is_authenticated %}
+
+                  <span class="navbar-text  " style="color: white;  text-transform: uppercase;">
+                   Welcome {{user.username}} !
+                  </span>
+
+                  <a class="ml-2" href="{% url 'logout'%}"><button class="btn btn-danger ">Logout</button></a>
+         
+          {% else %}
+
+              <a href="/user/login/"><button class="btn btn-primary" type="submit" name="button" style="font-size:14px; color: white;
+              float:right;"> Login Now </button></a>
+        
+          {% endif %}
+
+      </div>
+
+    </nav>
+
+<!-- navigation end ----->
+
+  <!--
+  ========== header section end  ==========
+  ==================================== 
+  -->
+
+
+  <!--
+  ========== main section ==========
+  ==================================== 
+  -->
+  
+        {% block content %}
+
+
+        {% endblock content %} 
+      </div>
+
+    </main><!-- /.container -->
+      
+
+  <!--
+  ========== main section end  ==========
+  ==================================== 
+  -->
+
+
+
+  <!--
+  ========== footer  section   ==========
+  ==================================== 
+  -->
+
+  <div class="jumbotron jumbotron-fluid mt-5 bg-dark text-white" style=" height: 500px; margin-bottom: 0px;">
+  <div class="container" style="margin-top: 100px;">
+      <div class="row">
+         <div class="col-md-4">
+            <a href="{% url 'home'%}"><h4 class="font-italic">Social Meet</h4></a>
+            <address>Office Address - 
+              <p>1123 A - V Block, Paresan Road
+                <br> Anjan Mahulla , Ujaad Nagar , Gumnam Shahar 
+                <br> Patani District, Khoya State </p></address>
+                <p>Phone No. 7714214714</p>
+          </div>
+
+         <div class="col-md-2">
+            <h4 class="font-italic">Sitemap</h4>
+            <ol class="list-unstyled">
+              <li><a href="{% url 'about'%}">About</a></li>
+              <li><a href="{% url 'post-list'%}">Blogs</a></li>
+              <li><a href="{% url 'contact'%}">Contacts</a></li>
+              <li><a href="#">Privacy policy</a></li>
+              <li><a href="#">Trems & Conditions</a></li>
+            </ol>
+          </div>
+
+               <div class="col-md-2">
+            <h4 class="font-italic">@ Social</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">GitHub</a></li>
+              <li><a href="#">Twitter</a></li>
+              <li><a href="#">Facebook</a></li>
+              <li><a href="#">Instagram</a></li>
+              <li><a href="#">LinkedIn</a></li>
+            </ol>
+          </div>
+
+          <div class="col-md-4 mt-5" >
+            <p><a href="{% url 'home'%}"><b>Social Meet</b></a> @copyright - All right reserved</p>
+            <author>SocialMeet is Designed and Developed by @BeDigital </author>
+            <b>Division of LearnInCreations</b>
+               
+      </div>
+  </div>
+</div>
+
+
+
+  <!--
+  ========== footer  section end  ==========
+  ==================================== 
+  -->
+
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>  

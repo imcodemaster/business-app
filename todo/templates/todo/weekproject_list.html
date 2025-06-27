@@ -1,0 +1,102 @@
+{% extends "todo/main.html" %}
+{% load static %}
+{% block content %}
+
+  <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+<section id="breadcrumbs" class="breadcrumbs">
+      <div class="container mt-2">
+        <div class="row ">
+        <div class="col-md-6 sm-4 d-flex justify-content-between align-items-center">
+     
+          <ol>
+            <li><a href="{% url 'home'%}">Home</a></li>
+            <li>Week project </li>
+          </ol>
+        </div>
+         </div>
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+	<div class="container  mb-5">
+		   <a href="{% url 'weekproject-create' %}"><button class="btn btn-primary text-white p-2">Create Project</button></a>
+		<div class="row">
+
+			{% for task in weekproject_list %}			
+  				<div class="col-md-4 ">		
+					<div class="card m-2 shadow p-3 mb-5 bg-white rounded" style="width: 20rem;"  >
+			
+					
+						<div class="card-body">
+							<span class="badge badge-primary" style="text-transform: uppercase;">{{task.author}}</span>
+
+                  {% if task.complete == True %}
+							<h5 class="card-title" style="text-transform: capitalize;"><strike>{{task.job}}</strike></h5>                 
+                  {% else %}
+                  
+               <h5 class="card-title" style="text-transform: capitalize;">{{task.job}}</h5>   
+                  {% endif %}
+               
+
+                   <p>
+                  <h3> Project  Status - </h3>
+
+                  {% if task.complete == True  %}
+                  <span class="badge  badge-success" style="font-size:15px;"> Task Completed !!  </span>
+
+				   {% elif task.halfway == True %} 
+					<span class="badge  badge-warning" style="font-size:15px;"> You're already on Halfway   !!  </span>
+
+				    {% elif task.initiate == True %} 
+					<span class="badge  badge-primary" style="font-size:15px;"> Task  inititated  !!  </span>
+
+ 					{% elif task.complete != True %}
+					<span class="badge  badge-warning" style="font-size:15px;"> Complete your TASK !!  </span>
+				  
+                  {% else %}
+                  <span class="badge  badge-danger" style="font-size:15px;"> Initiate the Task </span>
+                  {% endif %}
+                </p>
+
+
+                
+							<p class="card-text" style="text-transform: capitalize;"><b> Description- </b> <hr>
+								{{task.job_descriptions}}</p>
+							<p class="lead mb-0 "><a href="{{task.id}}" class="text-blue font-weight-light"><button class='btn btn-primary'>Read More</button> </a></p>
+							            
+
+							<p class="card-text"><small class="text-muted">Published {{task.published}}</small></p>
+						</div>
+					</div>
+				</div>
+			{% endfor %}		
+		</div>
+	</div>
+
+	<section class="text-dark-700 body-font " style="margin-top: 150px;">
+		  <div class="container px-5 py-24 mx-auto">
+		      <!-- pagination -->
+		      <div class="pagination" >
+		          <span class="step-links">
+		              {% if page_obj.has_previous %}
+		                  <a href="?page=1"><button class="btn btn-primary text-white" type="button" name="button"> First</button></a>
+		                  <a href="?page={{ page_obj.previous_page_number }}"><button class="btn btn-primary text-white" type="button" name="button">Previous</button></a>
+		              {% endif %}
+
+		              <span class="current">
+		                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+		              </span>
+
+		              {% if page_obj.has_next %}
+		                  <a href="?page={{ page_obj.next_page_number }}"><button class="btn btn-primary text-white" type="button" name="button">Next</button></a>
+		                  <a href="?page={{ page_obj.paginator.num_pages }}"><button class="btn btn-primary text-white " type="button" name="button">Last </button></a>
+		              {% endif %}
+		          </span>
+		      </div>
+		      <!-- pagination end -->
+</div>
+</section>
+</main>
+
+	
+{% endblock content %}

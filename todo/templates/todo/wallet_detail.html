@@ -1,0 +1,235 @@
+{% extends "todo/main.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container mt-2">
+
+        <div class="d-flex justify-content-between align-items-center">
+       
+          <ol>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li>Wallet detail - {{wallet.person_name}} wallet</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Blog Section ======= -->
+    <section id="blog" class="blog">
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-lg-8 entries">
+
+            <article class="entry entry-single" data-aos="fade-up">
+
+
+              <h2 class="entry-title">
+                <a href="#">{{wallet.person_name}}</a>
+              </h2>
+
+              <div class="entry-meta">
+                <ul>
+                  
+                  <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i> <a ><time datetime="2020-01-01"><b>Created on {{wallet.published| date}}</b></time></a></li>
+                  <li class="d-flex align-items-center"><i class="icofont-comment"></i> <a>at {{wallet.published| time}} </a></li>
+                </ul>
+              </div> 
+                <a href='/wallet/{{wallet.id}}/delete'><span class="ml-2" style="color: red;"><button class="btn btn-danger"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+</svg></button></span></a>
+             
+             <hr>
+             
+              </div>
+
+              <div class="entry-footer clearfix">
+                <div class="float-left">
+                  <i class="icofont-folder"></i>
+                  <ul class="cats">
+                    <li><a href="#">Wallet For  - {{wallet.person_name}}</a></li>
+                  </ul>
+
+                  <i class="icofont-tags"></i>
+                  <ul class="tags">
+                    <li><a>Created on -{{wallet.published| date}}</a></li>
+                    <li><a >Time -  {{wallet.published| time}}</a></li>
+              <!---<li><a href="#">Marketing</a></li>-->
+                  </ul>
+                </div>
+
+              <!--  <div class="float-right share">
+                  <a href="" title="Share on Twitter"><i class="icofont-twitter"></i></a>
+                  <a href="" title="Share on Facebook"><i class="icofont-facebook"></i></a>
+                  <a href="" title="Share on Instagram"><i class="icofont-instagram"></i></a>
+                </div>-->
+
+              </div>
+
+            </article>
+
+            <!-- End blog entry -->
+
+            <!--<div class="blog-author clearfix" data-aos="fade-up">
+              <img src="assets/img/blog-author.jpg" class="rounded-circle float-left" alt="">
+              <h4>Jane Smith</h4>
+              <div class="social-links">
+                <a href="https://twitters.com/#"><i class="icofont-twitter"></i></a>
+                <a href="https://facebook.com/#"><i class="icofont-facebook"></i></a>
+                <a href="https://instagram.com/#"><i class="icofont-instagram"></i></a>
+              </div>
+              <p>
+                Itaque quidem optio quia voluptatibus dolorem dolor. Modi eum sed possimus accusantium. Quas repellat voluptatem officia numquam sint aspernatur voluptas. Esse et accusantium ut unde voluptas.
+              </p>
+            </div>-->
+
+            <!-- End blog author bio -->
+
+            <div class="blog-comments" data-aos="fade-up">
+
+              <h4 class="comments-count"> Transistion on this Wallet</h4>
+              <a href="{% url 'transistion' wallet.pk %}"> Add One </a>
+
+                 <div class="reply-form">
+              {% if not wallet.walletcomment.all %}
+                <p>
+                  No Comment Yet !! 
+                  
+                </p>
+              {%  else %}
+                {% for comment in wallet.walletcomment.all %}
+           
+                  <div id="comment-1" class="comment clearfix">
+                    <!--<img src="assets/img/comments-2.jpg" class="comment-img  float-left" alt="">-->
+                    <p><strong>Comment by {{comment.author}} </strong> | Published on {{comment.published}}</p>
+    
+                    <p>
+                      {{comment.wallet}} wallet | Payment Status -  {{comment.payment_status}} | Tranfer Mode - {{comment.payment_mode}} | Amount - {{comment.amount}} Rs. | Comment -  {{comment.comment}}
+                    </p>
+
+                  </div><!-- End comment #1 -->
+                   <hr>
+                {% endfor %}
+            {% endif %}
+
+              </div>
+
+            </div><!-- End blog comments -->
+
+          </div><!-- End blog entries list -->
+
+<!--          <div class="col-lg-4">
+              {% for task in task_list %}     
+          
+                      <span class="badge badge-primary" style="text-transform: uppercase;">{{object.task.author}}</span>
+                      <p class="card-text" style="text-transform: capitalize;"><a href="{{object.task.pk}}">{{object.task.subject}}</a></p>
+                      <p class="card-text"><small class="text-muted">Published {{object.task.published}}</small></p>
+ 
+
+              {% endfor %}
+            <div class="sidebar" data-aos="fade-left"> -->
+
+              <!--<h3 class="sidebar-title">Search</h3>
+              <div class="sidebar-item search-form">
+                <form action="">
+                  <input type="text">
+                  <button type="submit"><i class="icofont-search"></i></button>
+                </form>
+
+              </div>-->
+
+              <!-- End sidebar search formn-->
+
+             <!-- <h3 class="sidebar-title">Categories</h3>
+              <div class="sidebar-item categories">
+                <ul>
+                  <li><a href="#">General <span>(25)</span></a></li>
+                  <li><a href="#">Lifestyle <span>(12)</span></a></li>
+                  <li><a href="#">Travel <span>(5)</span></a></li>
+                  <li><a href="#">Design <span>(22)</span></a></li>
+                  <li><a href="#">Creative <span>(8)</span></a></li>
+                  <li><a href="#">Educaion <span>(14)</span></a></li>
+                </ul>
+
+              </div>-->
+
+              <!-- End sidebar categories-->
+
+              <!--<h3 class="sidebar-title">Recent tasks</h3>
+              <div class="sidebar-item recent-tasks">
+                <div class="task-item clearfix">
+                  <img src="assets/img/blog-recent-tasks-1.jpg" alt="">
+                  <h4><a href="blog-single.html">Nihil blanditiis at in nihil autem</a></h4>
+                  <time datetime="2020-01-01">Jan 1, 2020</time>
+                </div>
+
+                <div class="task-item clearfix">
+                  <img src="assets/img/blog-recent-tasks-2.jpg" alt="">
+                  <h4><a href="blog-single.html">Quidem autem et impedit</a></h4>
+                  <time datetime="2020-01-01">Jan 1, 2020</time>
+                </div>
+
+                <div class="task-item clearfix">
+                  <img src="assets/img/blog-recent-tasks-3.jpg" alt="">
+                  <h4><a href="blog-single.html">Id quia et et ut maxime similique occaecati ut</a></h4>
+                  <time datetime="2020-01-01">Jan 1, 2020</time>
+                </div>
+
+                <div class="task-item clearfix">
+                  <img src="assets/img/blog-recent-tasks-4.jpg" alt="">
+                  <h4><a href="blog-single.html">Laborum corporis quo dara net para</a></h4>
+                  <time datetime="2020-01-01">Jan 1, 2020</time>
+                </div>
+
+                <div class="task-item clearfix">
+                  <img src="assets/img/blog-recent-tasks-5.jpg" alt="">
+                  <h4><a href="blog-single.html">Et dolores corrupti quae illo quod dolor</a></h4>
+                  <time datetime="2020-01-01">Jan 1, 2020</time>
+                </div>
+
+              </div>-->
+              <!-- End sidebar recent tasks-->
+
+           <!--   <h3 class="sidebar-title">Tags</h3>
+              <div class="sidebar-item tags">
+                <ul>
+                  <li><a href="#">App</a></li>
+                  <li><a href="#">IT</a></li>
+                  <li><a href="#">Business</a></li>
+                  <li><a href="#">Business</a></li>
+                  <li><a href="#">Mac</a></li>
+                  <li><a href="#">Design</a></li>
+                  <li><a href="#">Office</a></li>
+                  <li><a href="#">Creative</a></li>
+                  <li><a href="#">Studio</a></li>
+                  <li><a href="#">Smart</a></li>
+                  <li><a href="#">Tips</a></li>
+                  <li><a href="#">Marketing</a></li>
+                </ul>
+
+              </div>-->
+
+              <!-- End sidebar tags-->
+
+            </div><!-- End sidebar -->
+
+          </div><!-- End blog sidebar -->
+
+        </div>
+
+      </div>
+    </section><!-- End Blog Section -->
+
+  </main><!-- End #main -->
+
+
+{% endblock content %}

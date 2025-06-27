@@ -1,0 +1,89 @@
+{% extends 'info/main.html' %}
+{% load static %}
+{% block content %}
+
+  <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+   <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container mt-2">
+        <div class="row ">
+        <div class="col-md-6 sm-4 d-flex justify-content-between align-items-center">
+     
+          <ol>
+            <li><a href="{% url 'home'%}">Home</a></li>
+            <li>Todays Story  </li>
+          </ol>
+        </div>
+        <!--<div class="col-md-6 sm-8 d-flex justify-content-between align-items-center">
+      <form class="form" action="/story/" method="get" style="float: right;">
+        <input class="flex-grow bg-gray-100 rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mr-4 mb-1 sm:mb-0 mt-0" type="search" name = 'querystory' placeholder="Search Notice Subject" aria-label="search">
+        <button  type = 'submit'><img src="/static/images/searchicon.png" style="width:20px; height:20px; margin-left:5px;" ></img> </button>
+        <button class="text-white btn btn-primary" type = 'submit'>Search </button>
+      </form>
+         </div>-->
+         </div>
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+
+
+<div class="container mt-4">
+  <div class="row " style="margin-bottom: 100px;">
+        {% for story in story_list %}
+        <div class="col-md-4 ">
+        <div class="card m-2 shadow p-3 mb-5 bg-white rounded"  style="width: 16rem; font-size: 12px; ">
+            <div class="card-body">
+
+              <p class="card-text">{{story.subject}}</p>
+
+            </div>
+          <div class="card-footer">
+            <small class="text-muted">{{story.published}} | {{story.author}}</small>
+            <br>
+            <small class="text-muted">              
+              {% if request.user.is_superuser or request.user.is_staff %}
+
+                <a href='/blog/stories/{{story.id}}/update'><button class="btn btn-primary text-white m-1 "  style="font-size: 8px;" > Edit </button></a>
+                <a href='/blog/stories/{{story.id}}/delete'><button class="btn btn-warning text-white m-1 " style="font-size: 8px;" > Delete </button></a>
+              {% endif %}
+            </small>
+          </div>
+          </div>
+          </div>          
+        {% endfor %}
+
+  </div>
+</div>
+          
+
+            <!-- pagination -->
+      <div class="container">
+          <div class="pagination" style="margin-top:-70px; margin-bottom:10px;">
+              <span class="step-links">
+                  {% if page_obj.has_previous %}
+                      <a href="?page=1"><button class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg" type="button" name="button"> First</button></a>
+                      <a href="?page={{ page_obj.previous_page_number }}"><button class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg" type="button" name="button">Previous</button></a>
+                  {% endif %}
+
+                  <span class="current">
+                      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                  </span>
+
+                  {% if page_obj.has_next %}
+                      <a href="?page={{ page_obj.next_page_number }}"><button class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg" type="button" name="button">Next</button></a>
+                      <a href="?page={{ page_obj.paginator.num_pages }}"><button class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg" type="button" name="button">Last </button></a>
+                  {% endif %}
+              </span>
+          </div>
+          <!-- pagination end -->
+</div>
+
+  </main><!-- End #main -->
+
+{% endblock content %}
+
+<!--
+<form class="form-inline m-3" action="/s/" >
+  <input class="form-control mr-sm-2" type="search" name = 'q' placeholder="Search Notice Subject" aria-label="search">
+  <button  type = 'submit'><img src="/static/images/searchicon.png" style="width:20px; height:20px; margin-left:5px;" ></img> </button>
+</form>-->

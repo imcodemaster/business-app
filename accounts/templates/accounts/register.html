@@ -1,0 +1,49 @@
+{% extends "info/main.html"%}
+{% load crispy_forms_tags %}
+<!-- extended a base template to home template with a code block of extend and base template route -->
+
+{% block content %}
+<!------ Include the above in your HEAD tag ---------->
+
+
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <!-- Login Form -->
+
+<main id="main">
+  <div class="container mb-4 " style="margin-top: 100px; width:100%" >
+        <div class="row"> 
+        <div class="col-sm-12 md-6">
+          
+        </div>  
+    <div class="col-sm-12 md-6 ">
+    <div class="card center"  >
+      <div class="  card-body shadow ">
+          <div class="content-section border-bottom m-5">   
+              <form  method="POST">
+                     {% csrf_token %}
+                     <fieldset class="form-group">
+                       <legend class="border-bottom mb-4 sm-4"> Get Register Yourself </legend>
+                         {{ form|crispy }}
+                         <!-- {{ form.as_p }} no longer needed of .as_p as we have crsipy now ! -->
+                     </fieldset>
+
+                     <div class="form-group">
+                        <button type="submit" name="button" class="btn btn-primary"  style="font-size:15px;">Register Me </button>
+                     </div>
+                   </form>
+
+                  <br>
+                <div>
+                  <span class="p-5"> Aleady have an Account ?</span><a href="{% url 'login' %}"><button class="btn btn-primary" type="submit" name="button" class="btn btn-primary" style="font-size:15px;"> Login Now </button></a>
+                </div>
+              <br>
+          </div>
+      </div>
+    </div>
+</div>
+</div>
+</div>
+</main>
+{% endblock %}

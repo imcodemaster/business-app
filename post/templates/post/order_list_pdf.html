@@ -1,0 +1,98 @@
+  {% load static %}
+  
+  <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+   <section class="jumbotron" style="margin-top: 20px;">
+      <div class="container mt-2">
+        <div class="row ">
+
+        <div class="col-md-6 sm-4 d-flex justify-content-between align-items-center">
+     <h1 style="font-size: 30px;  text-align: center; font-family: Roboto;">Learnincreation Business </h1>
+     <p style="font-size: 20px;  text-align: center; font-family: Roboto;"> Empowering Your Digitally </p>
+              <h4 style="font-size: 20px;">Digital Serivce Card of {{request.user.username}} created on {{today}}</h3>
+            
+            <div class= 'row'>
+             <div class = 'col-sm-4 m-2 p-2'>
+              <p> <h3>Customer Profile </h3>
+              <b>Name</b> - {{request.user.first_name}} {{request.user.last_name}}<br>
+              Gender - {{request.user.profile.gender}}</p>
+              <p><h4>Business Name - {{request.user.profile.company_name}}</h4> 
+              <h7>Business Address</h7> : <p>{{request.user.profile.address}} , 
+              located at  <b> State </b> : <b>{{request.user.profile.state}} </b> and can be  
+              <i>Contact </i> via mobile number  <b>{{request.user.profile.mobile}}</b> and currently taking our service. 
+             We are happy to serve you !</p>  
+            </p>
+<hr>
+</div></div>
+
+
+<div class="container ">
+  <div class="row " style="margin-bottom: 10px;">
+     <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                      <thead>
+                        <tr>
+                          
+                          <th>Customer Name</th>
+                          <th>Date </th>
+                          <th>Item</th>
+                          <th>Description</th>
+                          <th>Work Status </th>
+                          <th>Payment </th>
+                          <th>Paid Earlier </th>
+                          
+                             
+                        </tr>
+                      </thead>
+
+
+
+                      <tbody>
+
+                       
+                         
+
+                              <tr>
+                          
+                                {% for monthfees in order %}
+
+                                <tr>
+                                 <td> {{ monthfees.user.first_name}} {{ monthfees.user.last_name}}</td>
+                                <td> {{ monthfees.date }}</td>
+                                <td> {{ monthfees.item }}</td>
+                                <td> {{ monthfees.description }}</td>
+                                <td> {{ monthfees.status }}</td>
+                                <td>{{ monthfees.payment }} </td>
+                                <td> {{ monthfees.wallet }}</td>
+                                  <td> </td>
+                                </tr>
+                              {% endfor %}
+            
+                              </tr>                
+                            </tbody>
+                    </table>
+                  </div>
+                  <hr>
+                 <h5> Mentioned Discount (if any*) - </h5>
+                  <hr>
+                  <h5>Total Amount - </h5> 
+                  <hr>
+                  <h5>Signatuare -</h5>
+                  <br> 
+                </div>
+              </div>
+       <div class="row " style="font-size: 15px; text-align: center; font-family: Roboto">
+              <p>This is computer generated service list and consider as your invoice with details of service you using,
+                <br> log on to our website for more details and verification. <br>
+              <h6>  Learnincreation Business </h6>
+              <hr>
+             <h7> Rudrapur ,  Uttarakhand   263153 </h7> <br> 
+                  <h7> Phone: +91 6395677914 </h7>
+                  <p>website : business.learnincreation.co.in</p>
+       </div>
+
+       <hr>
+       <h7>Designed by Learnincreation. <b>All right reserved &#169 2022</b> </h7>
+            </div>
+          </main>

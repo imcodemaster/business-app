@@ -1,0 +1,90 @@
+{% extends "todo/main.html" %}
+{% load static %}
+{% block content %}
+
+  <main id="main">
+  <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container mt-2">
+        <div class="row ">
+        <div class="col-md-6 sm-4 d-flex justify-content-between align-items-center">
+     
+          <ol>
+            <li><a href="{% url 'home'%}">Home</a></li>
+            <li>Event </li>
+          </ol>
+        </div>
+         </div>
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+
+	<div class="container  mb-5">
+		<a href="{% url 'event-create' %}"><button class="btn btn-primary text-white p-2">Create Event</button></a>
+		<div class="row">
+			{% for task in event_list %}			
+  				<div class="col-md-4 ">		
+					<div class="card m-2 shadow p-3 mb-5 bg-white rounded" style="width: 20rem;"  >
+			
+					
+						<div class="card-body">
+							<span class="badge badge-primary" style="text-transform: uppercase;">{{task.author}}</span>
+
+                  {% if task.complete == True %}
+							<h5 class="card-title" style="text-transform: capitalize;"><strike>{{task.eventname}}</strike></h5>                 
+                  {% else %}
+                  
+               <h5 class="card-title" style="text-transform: capitalize;">{{task.eventname}}<span class="badge  badge-warning">Uncomplete</span></h5>   
+                  {% endif %}
+               
+                <p>
+                  Event Status - 
+   				 
+   					{% if task.complete == True  %}
+                  	<span class="badge  badge-success" style="font-size:15px;">  Event Completed !!</span> 
+ 
+                  	{% else %}
+                  	<span class="badge  badge-danger" style="font-size:15px;">Complete your event !! </span>
+                  
+                  	{% endif %}
+                </p>
+							<p class="card-text" style="text-transform: capitalize;">Event on - <strong>{{task.eventon}}</strong></p>
+							<p class="lead mb-0 "><a href="{{task.pk}}" class="text-blue font-weight-light"><button class='btn btn-primary'>Read More</button> </a>
+							</p>
+							<br><br>
+							               
+
+							<p class="card-text"><small class="text-muted">Published {{task.published}}</small></p>
+						</div>
+					</div>
+				</div>
+			{% endfor %}		
+		</div>
+	</div>
+
+	<section class="text-dark-700 body-font " style="margin-top: 150px;">
+		  <div class="container px-5 py-24 mx-auto">
+		      <!-- pagination -->
+		      <div class="pagination" >
+		          <span class="step-links">
+		              {% if page_obj.has_previous %}
+		                  <a href="?page=1"><button class="btn btn-primary text-white" type="button" name="button"> First</button></a>
+		                  <a href="?page={{ page_obj.previous_page_number }}"><button class="btn btn-primary text-white" type="button" name="button">Previous</button></a>
+		              {% endif %}
+
+		              <span class="current">
+		                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+		              </span>
+
+		              {% if page_obj.has_next %}
+		                  <a href="?page={{ page_obj.next_page_number }}"><button class="btn btn-primary text-white" type="button" name="button">Next</button></a>
+		                  <a href="?page={{ page_obj.paginator.num_pages }}"><button class="btn btn-primary text-white " type="button" name="button">Last </button></a>
+		              {% endif %}
+		          </span>
+		      </div>
+		      <!-- pagination end -->
+</div>
+</section>
+</main>
+
+	
+{% endblock content %}

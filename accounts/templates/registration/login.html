@@ -1,0 +1,43 @@
+<!-- login template -->
+{% extends "info/main.html"%}
+{% load crispy_forms_tags %}
+<!-- extended a base template to home template with a code block of extend and base template route -->
+{% block content %}
+<div class="container" style="margin-top: 100px; width: 100%;">
+    <div class="row">
+    <div class="col-sm-12 md-6">
+      
+    </div>
+    <div class="col-sm-12 md-6 ">
+  <div class="border shadow-lg p-3 mb-5 bg-white rounded">
+          <div class="card-body border-primary">
+            <aside style="margin:10px;"> Welcome to Community of Sharp Learner </aside>
+              <div class="content-section border-bottom m-5 ">
+                   <form  method="POST">
+                     {% csrf_token %}
+                     <fieldset class="form-group">
+                       <legend class="border-bottom mb-4 sm-4"> Login </legend>
+                         {{ form|crispy }}
+                         <!-- {{ form.as_p }} no longer needed of .as_p as we have crsipy now ! -->
+                     </fieldset>
+
+                     <div class="form-group">
+                        <button type="submit" name="button" class="btn btn-primary"  style="font-size:15px;"> Login</button>
+                     </div>
+                   </form>
+<br>
+                   <div class="border-top pt-3">
+                     <br>
+                     <span class="text-muted">  Need an Account ? </span> <a class="ml-2" href="{% url 'register'%}"><button type="submit"  style="font-size:10px;" name="button" class="btn btn-primary text-white"> Sign Up !</button></a>
+                     <hr>
+                     <a href="{% url 'password_reset' %}"><button class="btn btn-primary" style="font-size:10px;">Forget Password </button></a>
+                   </div>
+                   <br>
+              </div>
+            </div>
+        </div>
+  </div>
+</div>
+</div>
+
+{% endblock content %}

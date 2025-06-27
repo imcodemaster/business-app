@@ -1,0 +1,79 @@
+{% extends "info/main.html"%}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container mt-2">
+
+        <div class="d-flex justify-content-between align-items-center">
+       
+          <ol>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li>Profile detail {{user.username}}</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 md-6">
+      <div class="card-deck">
+        <div class="card shadow mt-4">
+          <img class="card-img-top" src="{{ user.profile.image.url }}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{user.username}} Profile</h5>
+            <p class="card-text">Username - {{user.username}}</p>
+          
+            <p class="card-text">Firstname - {{user.first_name}}</p>
+            <p class="card-text">Lastname - {{user.last_name}}</p>
+            <p class="card-text">Email - {{user.email}} </p>
+            
+          </div>
+          <div class="card-body">
+            <h5>Mandatory Guidelines</h5>
+            <p class="card-text"> 1.Enter your Date Of Birth in "Date/Month/Year" Format.<br>
+            2.Upload Your Profile Photo , Signature Photo (make sure they are clear to see. )<br>
+            3.Upload Your Aadhar Card pic ( Upload Clear Pic)** <br>
+          4.Upload Your Certificate Pic (HighSchool , Intermediate)** <br>
+          5. You are declaring that all information provided by you is correct and best in your knowledge. <b>If terms get violate you are responsible for punishment through Administration</b>. </p>
+
+           <a href="{% url 'profile-pdf' %}"><button class="btn btn-primary">Download Identity Card </button></a>
+          </div>
+        </div>      
+    </div>
+  </div>
+  <div class="col-sm-6 md-6"> 
+          <div class="card-deck">
+            <div class="card shadow mt-4 mb-4">
+                <form  method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <fieldset class="form-group p-4">
+                            <legend class="border-bottom mb-4 sm-4 p-4">Profile Update </legend>
+                                {{ u_form|crispy }}
+                                {{ p_form|crispy }}
+                                           <!-- {{ form.as_p }} no longer needed of .as_p as we have crsipy now ! -->
+                        </fieldset>
+
+                        <div class="form-group">
+                             <button type="submit" name="button" class="btn btn-primary m-4"  style="font-size:15px;">Update Profile </button>
+                            
+                        </div>
+                 </form>
+           </div>
+     </div>
+      </div>
+    </div>
+</div>  
+
+
+
+
+{% endblock content %}
+

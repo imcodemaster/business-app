@@ -1,0 +1,95 @@
+{% extends "todo/main.html" %}
+{% load static %}
+{% block content %}
+
+<footer id="footer">
+ <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Task To Do - Today </h4>
+            <p>
+               <a href="{% url 'task-create' %}"><button class="btn btn-primary text-white p-2">Create Task</button></a>
+                   <a href="{% url 'task-list' %}"><button class="btn btn-primary text-white p-2">View Task </button></a>
+            </p>
+         
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Project For This Week</h4>
+            <p>
+               <a href="{% url 'weekproject-create' %}"><button class="btn btn-primary text-white p-2">Create Project</button></a>
+                   <a href="{% url 'weekproject-list' %}"><button class="btn btn-primary text-white p-2">View Project</button></a>
+            </p>
+           
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h4>Event Planner </h4>
+            <p>
+              <a href="{% url 'event-create' %}"><button class="btn btn-primary text-white p-2">Create Event</button></a>
+                   <a href="{% url 'event-list' %}"><button class="btn btn-primary text-white p-2">View Event</button></a>
+            </p>
+
+          </div>
+
+
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Wallet </h4>
+            <p>
+               <a href="{% url 'wallet-create' %}"><button class="btn btn-primary text-white p-2">Create Wallet</button></a>
+                   <a href="{% url 'wallet-list' %}"><button class="btn btn-primary text-white p-2">View Wallet </button></a>
+            </p>
+         
+          </div>
+
+
+          <div class="col-lg-3 col-md-6 footer-info">
+         <h4>Notes </h4>
+            <p>
+               <a href="{% url 'notes-create' %}"><button class="btn btn-primary text-white p-2">Create Notes</button></a>
+                   <a href="{% url 'notes-list' %}"><button class="btn btn-primary text-white p-2">View Notes </button></a>
+            </p>
+            
+            <div class="social-links mt-3">
+             **Your Online Dairy . <br>
+             ** We trying to Save Tree ;)
+            </div>
+          </div>
+
+
+          <div class="col-lg-3 col-md-6 footer-info">
+            <h3>About Miccky - </h3>
+            <p>This application is a prototype - Where we trying to create an Online Dairy. Where you can use this dairy as to set your task for a day plan your week project , events , notes , wallet etc. 
+
+            
+            </p>
+
+
+            <div class="social-links mt-3">
+             **Allow Cookies to show you Notifications.
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>LearnInCreation</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/eterna-free-multipurpose-bootstrap-template/ -->
+        Designed by <a href="http://learnincreation.co.in/">LearnInCreation</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+
+{% endblock content %}

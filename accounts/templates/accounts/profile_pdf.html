@@ -1,0 +1,63 @@
+  <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+   <section class="jumbotron" style="margin-top: 100px;">
+      <div class="container mt-2">
+        <div class="row ">
+        <div class="col-md-6 sm-4 d-flex justify-content-between align-items-center">
+     <h1 style="font-size: 42px;  text-align: center; font-family: Roboto;">Sardar Bhagat Singh P.g College  </h1>
+     <p style="font-size: 20px;  text-align: center; font-family: Roboto;"> School Slogan </p>
+              <h3 style="font-size: 25px;">Digital Identity Card with Profile Details of {{request.user.first_name}}{{request.user.last_name}} <br>
+              -username -{{request.user.username}}</h3>
+            
+            <div class= 'row'>
+             <div class = 'col-sm-4 md-4 p-2'>
+             </div>
+             </div>
+              <p> <h3>Student Profile </h3>
+              <b>Name</b> - {{request.user.first_name}} {{request.user.last_name}}<br>
+              Gender - {{request.user.profile.gender}}
+              <p><h4>Father's  Name - Mr. {{request.user.profile.father_name}}</h4> </p>
+
+              <i>Registration Id</i>  - <b>{{request.user.profile.registration_id}}</b> With 
+             <i> Enrollment Number </i> - <b>{{request.user.profile.enrollment_number}} </b>
+             <br> 
+              <i>Date Of Birth </i> of Student is  <b>{{request.user.profile.date_of_birth}}</b> and currently in our College Campus in 
+              </p>
+
+              
+            <div class= 'row'>
+             <div class = 'col-sm-4 md-4 p-2'>
+              <p><h4>Course and Semester/Year -</h4> {{request.user.profile.course}} Course and in {{request.user.profile.semester}} semester.</p>
+              </div>
+              </div>
+
+            <div class= 'row'>
+             <div class = 'col-sm-4 md-4 p-2'>
+              <p><h4>Student Department -</h4> {{request.user.profile.department}} Department</p>
+        </div>
+        </div>
+            <div class= 'row'>
+             <div class = 'col-sm-4 md-4 p-2'>
+              <p> 
+              <h4>Subjects enrolled by student -</h4> Subject - {{request.user.profile.subjects_1}} , 
+              {{request.user.profile.subjects_2}} ,
+              {{request.user.profile.subjects_3}} , 
+              {{request.user.profile.subjects_4}} ,
+              {{request.user.profile.subjects_5}}.
+                </p>
+          </div>
+         </div>
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+
+     <div class="row " style="font-size: 15px; text-align: center; font-family: Roboto">
+              <p>School Address <br>
+              Address Line 1 <br>
+city / town  - State  pin code - 
+                  Phone: +1 5589 55488 55
+                  Email: info@example.com</p>
+       </div>
+
+            </div>
+          </main>

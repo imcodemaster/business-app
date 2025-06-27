@@ -1,0 +1,52 @@
+<!-- logout template -->
+<!-- login template -->
+{% extends "info/main.html"%}
+
+
+<!-- extended a base template to home template with a code block of extend and base template route -->
+
+{% block content %}
+<!--
+    <div class="card mb-5 shadow-lg p-3 mb-5 bg-white rounded " >
+      <div class="card-body ">
+          <div class="content-section border-bottom m-5 ">
+
+
+          </div>
+        </div>
+    </div>
+-->
+
+<div class="container " style="margin-top: 100px; width:100%;">
+  <div class="row">
+    <div class="col-sm-12 md-6">
+      
+    </div>
+    <div class="col-sm-12 md-6 ">
+      
+
+    <div class="card center" >
+      <div class="card-body shadow ">
+          <div class="content-section border-bottom m-5 ">
+                <h3 > <i>Logged out</i> succesfully !!</h3><br>
+                <span> We Hope You find this portal <b> Worthful</b> and <b>we again see you soon</b> =) </span> <br>
+                <!--<span> or any message campus wants to show to their childer !!<br> </span>-->
+                <br>
+               <div class="border-top pt-3 ">
+                 <br>
+                 <small class="text-muted" style="font-size:15px;"> Need an Account ? <a class="ml-2" href="{% url 'register'%}">
+                   <button class="btn btn-primary" type="submit" name="button" class="btn btn-primary"  style="font-size:15px;"> Register Now  </button></a></small> <br>
+                <br>
+                <hr>
+                <br>
+                 <small class="text-muted" style="font-size:15px;"> Want to In Again ? <a class="ml-2" href="{% url 'login'%}">
+                   <button class="btn btn-primary" type="submit" name="button" class="btn btn-primary"  style="font-size:15px;"> Login Now </button></a></small>
+               </div>
+               <br>
+          </div>
+        </div>
+    </div>
+</div>
+    </div>
+  </div>
+{% endblock content %}

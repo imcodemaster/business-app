@@ -1,0 +1,130 @@
+{% extends "todo/main.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section >
+      <div class="container mt-2">
+
+        <div class="d-flex justify-content-between align-items-center">
+       
+          <ol>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li>weekproject detail - {{weekproject.job}}</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Blog Section ======= -->
+   
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-lg-8 entries">
+
+            <article class="entry entry-single" data-aos="fade-up">
+
+            
+
+              <h2 class="entry-title">
+                <a href="">{{weekproject.job}}</a>
+              </h2>
+
+                <a href='/weekproject/{{weekproject.id}}/update'><span style="color: blue;"><button class="btn btn-primary"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+</svg></button></span></a>
+                <a href='/weekproject/{{weekproject.id}}/delete'><span class="ml-2" style="color: red;"><button class="btn btn-danger"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+</svg></button></span></a>
+             
+             <hr>
+    <p>
+                  <h3> Project  Status - </h3>
+
+                  {% if task.complete == True  %}
+                  <span class="badge  badge-success" style="font-size:15px;"> Task Completed !!  </span>
+
+           {% elif task.halfway == True %} 
+          <span class="badge  badge-warning" style="font-size:15px;"> You're already on Halfway   !!  </span>
+
+            {% elif task.initiate == True %} 
+          <span class="badge  badge-primary" style="font-size:15px;"> Task  inititated  !!  </span>
+
+          {% elif task.complete != True %}
+          <span class="badge  badge-warning" style="font-size:15px;"> Complete your TASK !!  </span>
+          
+                  {% else %}
+                  <span class="badge  badge-danger" style="font-size:15px;"> Initiate the Task </span>
+                  {% endif %}
+                </p>
+                <hr>
+                <p>
+                  <h4> Job Descriptions - </h4>
+                  <p> {{weekproject.job_descriptions}} </p>
+                </p>
+                
+                <blockquote>
+                  <i class="icofont-quote-left quote-left"></i>
+                  <p>
+                   <b><i>weekproject Highlights -</i></b>
+                   <br> {{weekproject.weekproject_highlight}}
+          <br><br>
+                   <strong> Project Deadlines - </strong> <hr>
+                   <h1> In a Week from - ({{weekproject.published}}) </h1>
+
+                  </p>
+                  <i class="las la-quote-right quote-right"></i>
+                  <i class="icofont-quote-right quote-right"></i>
+                </blockquote>
+
+              </div>
+
+              <div class="entry-footer clearfix">
+                <div class="float-left">
+                  <i class="icofont-folder"></i>
+                  <ul class="cats">
+                    <li><a href="#">Author - {{weekproject.author}}</a></li>
+                  </ul>
+
+                  <i class="icofont-tags"></i>
+                  <ul class="tags">
+                    <li><a>Created on -{{weekproject.published| date}}</a></li>
+                   <b> <li><a >Time -  {{weekproject.published| time}}</a></li></b>
+              <!---<li><a href="#">Marketing</a></li>-->
+                  </ul>
+                </div>
+
+              <!--  <div class="float-right share">
+                  <a href="" title="Share on Twitter"><i class="icofont-twitter"></i></a>
+                  <a href="" title="Share on Facebook"><i class="icofont-facebook"></i></a>
+                  <a href="" title="Share on Instagram"><i class="icofont-instagram"></i></a>
+                </div>-->
+
+              </div>
+
+            </article>
+
+         
+              <!-- End sidebar tags-->
+
+            </div><!-- End sidebar -->
+
+          </div><!-- End blog sidebar -->
+
+        </div>
+
+      </div>
+    </section><!-- End Blog Section -->
+
+  </main><!-- End #main -->
+
+
+{% endblock content %}
